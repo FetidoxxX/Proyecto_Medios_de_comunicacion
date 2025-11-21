@@ -1,64 +1,78 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('> System.init(urban_gear_v2.0)');
 
-    // --- MATRIX RAIN EFFECT ---
+    // --- MATRIX RAIN EFFECT (UPDATED) ---
     const canvas = document.getElementById("matrix-canvas");
     const context = canvas.getContext("2d");
 
-    // Set canvas size to window size
+    // Configuration
+    const fontSize = 14;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    let columns = 0;
+    const drops = [];
+    const text = [];
+
+    // Characters (Katakana + Latin + Numbers)
+    const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        columns = width / fontSize;
+        
+        // Reset drops
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * 43 - 43;
+            text[i] = chars[Math.floor(Math.random() * chars.length)];
+        }
+        
+        // Apply transformations from user request (Mirrored & Stretched)
+        // Note: We need to reset transform before applying again on resize to avoid compounding
+        context.setTransform(1, 0, 0, 1, 0, 0); 
+        context.translate(width, 0);
+        context.scale(-1, 1); // Removed vertical stretch 1.2 as it might distort layout too much, kept horizontal flip
     }
+
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Configuration
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = [];
-    
-    // Initialize drops
-    for (let i = 0; i < columns; i++) {
-        drops[i] = Math.random() * -100; // Start above screen randomly
-    }
-
-    // Characters (Katakana + Latin + Numbers)
-    const chars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const charArray = chars.split("");
-
     function drawMatrix() {
         // Background with opacity for trail effect
-        context.fillStyle = "rgba(10, 10, 10, 0.05)"; // Using brand bg color #0a0a0a
-        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = "rgba(10, 10, 10, 0.1)"; // Dark background with fade
+        context.fillRect(0, 0, width, height);
 
+        // Set the previous line (Trail) to Terminal Green
+        context.fillStyle = "#00ff00"; 
         context.font = fontSize + "px 'Fira Code', monospace";
-        
+
         for (let i = 0; i < drops.length; i++) {
-            // Random character
-            const text = charArray[Math.floor(Math.random() * charArray.length)];
-            
-            // Color logic: Randomly switch between Green and Cyan for that "glitchy" cyberpunk look
-            // Mostly Green (#00ff00), sometimes Cyan (#00ffff)
-            if (Math.random() > 0.95) {
-                context.fillStyle = "#00ffff"; // Cyan Accent
-            } else {
-                context.fillStyle = "#0f0"; // Terminal Green
+            // Draw the character from the previous frame (the trail)
+            if (text[i]) {
+                context.fillText(text[i], i * fontSize, drops[i] * fontSize);
             }
+        }
 
-            context.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            // Reset drop if it goes off screen (randomly)
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-
-            // Move drop down
+        // Generate new characters (Head of the drop)
+        context.fillStyle = "#00ffff"; // Cyan Accent for the leading character
+        for (let i = 0; i < drops.length; i++) {
             drops[i]++;
+
+            // Random character to print
+            text[i] = chars[Math.floor(Math.random() * chars.length)];
+
+            // Draw new character
+            context.fillText(text[i], i * fontSize, drops[i] * fontSize);
+
+            // Sending the drop to the top randomly, after it has crossed the screen
+            if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                drops[i] = Math.random() * 43 - 43;
+            }
         }
     }
 
-    // Run animation
     setInterval(drawMatrix, 50);
 
 
