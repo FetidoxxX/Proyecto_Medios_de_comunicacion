@@ -193,11 +193,41 @@ document.addEventListener('DOMContentLoaded', () => {
         carousel.addEventListener('mouseleave', () => { 
             isPaused = false; 
             lastTime = 0; // Reset time to avoid huge jump
+            isDown = false; // Stop dragging if left window
+            carousel.classList.remove('active');
         });
         
         carousel.addEventListener('scroll', () => {
             if (!isPaused) return;
             scrollAmount = carousel.scrollLeft;
+        });
+
+        // Drag to Scroll Logic
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.classList.add('active');
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+            // Disable default image drag
+            e.preventDefault(); 
+        });
+
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.classList.remove('active');
+        });
+
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            carousel.scrollLeft = scrollLeft - walk;
+            scrollAmount = carousel.scrollLeft; // Sync for auto-scroll
         });
     });
 });
