@@ -388,12 +388,12 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.7); /* Dimmed by default */
+    filter: brightness(1); /* Normal brightness for visibility */
     transition: all 0.5s;
 }
 
 .product-card.mini:hover img {
-    filter: brightness(1.1); /* Bright and vivid on hover */
+    filter: brightness(1.3); /* Bright and vivid on hover */
     transform: scale(1.05);
 }
 
@@ -412,6 +412,11 @@ body {
     color: var(--accent-purple);
     font-weight: 700;
     margin-bottom: 1rem;
+}
+
+/* Accessories Specific Override */
+#accesorios .product-card.mini .img-container {
+    height: 250px; /* Shorter height for accessories (caps, bags, etc.) */
 }
 
 /* Removed text overlay as requested */
