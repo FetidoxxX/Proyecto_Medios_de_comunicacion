@@ -23,9 +23,10 @@
         <span>[</span> MENÚ <span>]</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#hero" data-text="INICIO">INICIO</a></li>
-        <li><a href="#shop" data-text="EQUIPO">EQUIPO</a></li>
-        <li><a href="#about" data-text="NOSOTROS">NOSOTROS</a></li>
+        <li><a href="#ellos" data-text="/ELLOS">/ELLOS</a></li>
+        <li><a href="#ellas" data-text="/ELLAS">/ELLAS</a></li>
+        <li><a href="#accesorios" data-text="/ACCESORIOS">/ACCESORIOS</a></li>
+        <li><a href="#specs" data-text="/SPECS">/ESPECIFICACIONES_TÉCNICAS</a></li>
       </ul>
     </nav>
 
@@ -35,10 +36,10 @@
         <button class="close-btn" id="close-menu">X</button>
       </div>
       <ul class="terminal-links">
-        <li><a href="#hero">> cd /inicio</a></li>
-        <li><a href="#shop">> cd /inventario</a></li>
-        <li><a href="#about">> cd /nosotros</a></li>
-        <li><a href="#">> ./iniciar_compra.sh</a></li>
+        <li><a href="#ellos">> cd /ellos</a></li>
+        <li><a href="#ellas">> cd /ellas</a></li>
+        <li><a href="#accesorios">> cd /accesorios</a></li>
+        <li><a href="#specs">> cat /specs.txt</a></li>
       </ul>
     </div>
 
@@ -66,9 +67,9 @@
 
     <section id="shop" class="store-section">
       
-      <!-- Category 1: Core Collection -->
-      <div class="category-block">
-        <h2 class="category-title">/COLECCIÓN_NUCLEO</h2>
+      <!-- Category 1: ELLOS -->
+      <div class="category-block" id="ellos">
+        <h2 class="category-title">/COLECCIÓN_ELLOS</h2>
         <div class="carousel-container">
           <div class="carousel-track">
             <!-- Product 1 -->
@@ -171,9 +172,9 @@
         </div>
       </div>
 
-      <!-- Category 2: Tactical Accessories -->
-      <div class="category-block">
-        <h2 class="category-title">/ACCESORIOS_TACTICOS</h2>
+      <!-- Category 2: ELLAS -->
+      <div class="category-block" id="ellas">
+        <h2 class="category-title">/COLECCIÓN_ELLAS</h2>
         <div class="carousel-container">
           <div class="carousel-track">
             <div class="product-card mini">
@@ -182,8 +183,8 @@
                 <div class="overlay"><span class="code-decoration">0xA1</span></div>
               </div>
               <div class="product-info">
-                <h3>FIREWALL_CAP</h3>
-                <p class="price">35.00 ETH</p>
+                <h3>DAEMON_JACKET_V3</h3>
+                <p class="price">150.00 ETH</p>
                 <button class="inspect-btn">[ INSPECCIONAR ]</button>
               </div>
             </div>
@@ -260,19 +261,19 @@
         </div>
       </div>
 
-      <!-- Category 3: Limited Edition -->
-      <div class="category-block">
-        <h2 class="category-title">/EDICIÓN_LIMITADA</h2>
+      <!-- Category 3: ACCESORIOS -->
+      <div class="category-block" id="accesorios">
+        <h2 class="category-title">/ACCESORIOS_TACTICOS</h2>
         <div class="carousel-container">
           <div class="carousel-track">
             <div class="product-card mini">
               <div class="img-container">
-                <img src="https://placehold.co/400x500/0f0f0f/b026ff?text=Daemon+Jacket&font=roboto" alt="Daemon Jacket">
-                <div class="overlay"><span class="code-decoration">0xFF</span></div>
+                <img src="https://plus.unsplash.com/premium_photo-1682125024239-76c9a74dfa16?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Q3liZXJwdW5rJTIwRmFzaGlvbnxlbnwwfHwwfHx8MA%3D%3D" alt="Firewall Cap">
+                <div class="overlay"><span class="code-decoration">0xA1</span></div>
               </div>
               <div class="product-info">
-                <h3>DAEMON_JACKET_V3</h3>
-                <p class="price">150.00 ETH</p>
+                <h3>FIREWALL_CAP</h3>
+                <p class="price">35.00 ETH</p>
                 <button class="inspect-btn">[ INSPECCIONAR ]</button>
               </div>
             </div>
@@ -353,7 +354,7 @@
     </section>
 
     <!-- Tech Specs Section -->
-    <section class="tech-specs-section">
+    <section id="specs" class="tech-specs-section">
       <h2 class="section-title">/ESPECIFICACIONES_TÉCNICAS</h2>
       <div class="specs-grid">
         <div class="spec-card scroll-reveal">

@@ -14,6 +14,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
 body {
   background-color: transparent; /* Make transparent so canvas is visible */
   color: var(--text-color);
@@ -182,6 +187,7 @@ body {
   justify-content: center;
   padding: 2rem;
   position: relative;
+  scroll-snap-align: center; /* Allow snapping back to hero */
 }
 
 .hero-content {
@@ -301,8 +307,10 @@ body {
 }
 
 .category-block {
-    margin-bottom: 8rem;
+    margin-bottom: 5rem; /* Reduced from 8rem */
     padding-left: 2rem; /* Indent title */
+    scroll-snap-align: center; /* Center carousel when scrolling */
+    scroll-margin-top: 80px; /* Offset for fixed navbar */
 }
 
 .category-title {
@@ -489,6 +497,8 @@ body {
     padding: 5rem 2rem;
     max-width: 1400px;
     margin: 0 auto;
+    scroll-snap-align: center; /* Center when scrolling */
+    scroll-margin-top: 80px; /* Offset for navbar */
 }
 
 .specs-grid {
@@ -536,6 +546,7 @@ body {
   margin-top: 5rem;
   text-align: center;
   color: #666;
+  scroll-snap-align: center; /* Allow snapping to footer */
 }
 
 .footer .ascii-art,
