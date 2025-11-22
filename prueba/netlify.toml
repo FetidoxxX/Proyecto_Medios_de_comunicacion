@@ -1,0 +1,39 @@
+# Netlify configuration for static site
+
+[build]
+  # Publish directory (where the built site files are)
+  publish = "."
+
+  # Command to run before deploying (none needed for static HTML)
+  command = ""
+
+[[headers]]
+  # Apply these headers to all routes
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Cache static assets
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  # HTML should not be cached as aggressively
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  # Root index.html
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 404 page configuration
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
