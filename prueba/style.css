@@ -405,7 +405,16 @@ body {
 .product-card.mini h3 {
     font-family: var(--font-header);
     font-size: 1.2rem;
+    margin-bottom: 0.2rem; /* Reduced margin */
+}
+
+.product-type {
+    color: #888;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
     margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .product-card.mini .price {
@@ -424,7 +433,30 @@ body {
     display: none; 
 }
 
-.inspect-btn {
+/* Cart Icon in Navbar */
+.cart-container a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-green) !important; /* Force green */
+    font-weight: bold;
+}
+
+#cart-count {
+    background: var(--accent-purple);
+    color: #fff;
+    padding: 0.1rem 0.4rem;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#cart-count.bump {
+    transform: scale(1.5);
+}
+
+/* Add Button */
+.add-btn {
     background: transparent;
     border: 1px solid #333;
     color: #666;
@@ -433,16 +465,43 @@ body {
     font-family: var(--font-mono);
     transition: all 0.3s;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.product-card.mini:hover .inspect-btn {
+.product-card.mini:hover .add-btn {
     border-color: var(--accent-cyan);
     color: var(--accent-cyan);
 }
 
-.inspect-btn:hover {
-    background: var(--accent-cyan);
+.add-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    color: var(--accent-cyan);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+/* Added State */
+.add-btn.added {
+    background: var(--accent-green);
     color: var(--bg-color) !important;
+    border-color: var(--accent-green);
+}
+
+.add-btn.added svg {
+    fill: var(--bg-color);
+}
+
+.add-btn.added:hover {
+    background: #ff0055; /* Red to indicate remove */
+    border-color: #ff0055;
+    color: white !important;
+}
+
+.add-btn.added:hover svg {
+    fill: white;
 }
 
 /* Marquee Section */

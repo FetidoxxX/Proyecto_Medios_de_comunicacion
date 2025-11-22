@@ -230,4 +230,41 @@ document.addEventListener('DOMContentLoaded', () => {
             scrollAmount = carousel.scrollLeft; // Sync for auto-scroll
         });
     });
+
+    // --- CART FUNCTIONALITY ---
+    const cartCountEl = document.getElementById('cart-count');
+    const addButtons = document.querySelectorAll('.add-btn');
+    let cartCount = 0;
+
+    addButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent any default action
+            
+            // Toggle Added State
+            if (btn.classList.contains('added')) {
+                // Remove from cart
+                btn.classList.remove('added');
+                cartCount--;
+            } else {
+                // Add to cart
+                btn.classList.add('added');
+                cartCount++;
+            }
+
+            // Update Cart Count
+            updateCartCount();
+        });
+    });
+
+    function updateCartCount() {
+        // Clamp count to 0 just in case
+        if (cartCount < 0) cartCount = 0;
+        
+        cartCountEl.innerText = cartCount;
+        
+        // Bump Animation
+        cartCountEl.classList.remove('bump');
+        void cartCountEl.offsetWidth; // Trigger reflow
+        cartCountEl.classList.add('bump');
+    }
 });
