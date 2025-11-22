@@ -142,4 +142,62 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 30);
         });
     });
+
+    // --- AUTO-SCROLL CAROUSELS (SMOOTH) ---
+    const carousels = document.querySelectorAll('.carousel-container');
+    
+    carousels.forEach(carousel => {
+        let scrollAmount = 0;
+        let direction = 1; 
+        const speed = 50; // Pixels per second
+        const delay = 2000; 
+        let isPaused = false;
+        let lastTime = 0;
+
+        function autoScroll(timestamp) {
+            if (!lastTime) lastTime = timestamp;
+            const deltaTime = (timestamp - lastTime) / 1000; // Seconds
+            lastTime = timestamp;
+
+            if (isPaused) {
+                requestAnimationFrame(autoScroll);
+                return;
+            }
+
+            // Move based on time to be framerate independent
+            const move = speed * deltaTime * direction;
+            scrollAmount += move;
+            carousel.scrollLeft = scrollAmount;
+
+            // Check boundaries
+            // Use a small buffer (1px) to avoid getting stuck due to sub-pixel rounding
+            if (direction === 1 && carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 1)) {
+                direction = -1;
+                isPaused = true;
+                setTimeout(() => { isPaused = false; }, delay);
+            } else if (direction === -1 && carousel.scrollLeft <= 0) {
+                direction = 1;
+                isPaused = true;
+                setTimeout(() => { isPaused = false; }, delay);
+            }
+
+            requestAnimationFrame(autoScroll);
+        }
+
+        // Initialize
+        scrollAmount = carousel.scrollLeft;
+        requestAnimationFrame(autoScroll);
+
+        // Interactions
+        carousel.addEventListener('mouseenter', () => { isPaused = true; });
+        carousel.addEventListener('mouseleave', () => { 
+            isPaused = false; 
+            lastTime = 0; // Reset time to avoid huge jump
+        });
+        
+        carousel.addEventListener('scroll', () => {
+            if (!isPaused) return;
+            scrollAmount = carousel.scrollLeft;
+        });
+    });
 });
