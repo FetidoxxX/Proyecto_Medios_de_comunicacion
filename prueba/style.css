@@ -547,15 +547,39 @@ body {
   text-align: center;
   color: #666;
   scroll-snap-align: center; /* Allow snapping to footer */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
-.footer .ascii-art,
-.footer p:nth-of-type(2) {
-    color: #ffffff;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+.footer .ascii-art {
+  overflow-x: auto; /* Allow scrolling if needed */
+  -webkit-overflow-scrolling: touch;
+}
+
+.footer .ascii-art pre {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  font-size: 0.5rem; /* Smaller on mobile */
+  line-height: 1;
+  margin: 0;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.footer p {
+  color: #666;
+}
+
+.footer p:first-child {
+  color: #ffffff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 /* Desktop Media Query */
+@media (min-width: 768px) {
+  .footer .ascii-art pre {
+    font-size: 0.75rem; /* Larger on desktop */
+  }
+}
 @media (min-width: 768px) {
   .nav-links {
     display: flex;
