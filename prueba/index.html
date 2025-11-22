@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>N0DE_STREET | Cyberpunk Streetwear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;500;700&family=Oswald:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    <canvas id="matrix-canvas"></canvas>
+
+    <nav class="navbar">
+      <div class="logo">N0DE_STREET<span class="blink">_</span></div>
+      <div class="menu-toggle" id="mobile-menu">
+        <span>[</span> MENU <span>]</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#hero" data-text="HOME">HOME</a></li>
+        <li><a href="#shop" data-text="GEAR">GEAR</a></li>
+        <li><a href="#about" data-text="ABOUT">ABOUT</a></li>
+      </ul>
+    </nav>
+
+    <div class="mobile-terminal" id="terminal-menu">
+      <div class="terminal-header">
+        <span class="status">ROOT ACCESS GRANTED</span>
+        <button class="close-btn" id="close-menu">X</button>
+      </div>
+      <ul class="terminal-links">
+        <li><a href="#hero">> cd /home</a></li>
+        <li><a href="#shop">> cd /shop_inventory</a></li>
+        <li><a href="#about">> cd /manifesto</a></li>
+        <li><a href="#">> ./init_checkout.sh</a></li>
+      </ul>
+    </div>
+
+    <header id="hero" class="hero-section">
+      <div class="hero-content">
+        <p class="subtitle">> System.init(urban_gear_v2.0)</p>
+        <h1 class="glitch-title" data-text="WEAR THE CODE.">WEAR THE CODE.</h1>
+        <h1 class="glitch-title" data-text="OWN THE STREETS.">
+          OWN THE STREETS.
+        </h1>
+        <a href="#shop" class="cta-btn">
+          <span class="btn-text">INITIALIZE_DROP</span>
+          <div class="btn-glitch"></div>
+        </a>
+      </div>
+    </header>
+
+    <section id="shop" class="product-section">
+      <h2 class="section-title">/AVAILABLE_NODES</h2>
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card scroll-reveal">
+          <div class="img-container">
+            <img
+              src="https://placehold.co/600x800/0f0f0f/00ff00?text=Null+Pointer+Hoodie&font=roboto"
+              alt="Null Pointer Hoodie"
+            />
+            <div class="overlay">
+              <span class="code-decoration">0x001</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>NULL_POINTER_HOODIE</h3>
+            <p class="price">89.00 ETH</p>
+            <button class="inspect-btn">[ INSPECT ELEMENT ]</button>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card scroll-reveal" style="transition-delay: 0.2s">
+          <div class="img-container">
+            <img
+              src="https://placehold.co/600x800/0f0f0f/00ffff?text=Stack+Overflow+Tee&font=roboto"
+              alt="Stack Overflow Tee"
+            />
+            <div class="overlay">
+              <span class="code-decoration">0x002</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>STACK_OVERFLOW_TEE</h3>
+            <p class="price">45.00 ETH</p>
+            <button class="inspect-btn">[ INSPECT ELEMENT ]</button>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card scroll-reveal" style="transition-delay: 0.4s">
+          <div class="img-container">
+            <img
+              src="https://placehold.co/600x800/0f0f0f/b026ff?text=Daemon+Jacket&font=roboto"
+              alt="Daemon Jacket"
+            />
+            <div class="overlay">
+              <span class="code-decoration">0x003</span>
+            </div>
+          </div>
+          <div class="product-info">
+            <h3>DAEMON_JACKET_V3</h3>
+            <p class="price">150.00 ETH</p>
+            <button class="inspect-btn">[ INSPECT ELEMENT ]</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>N0DE_STREET © 2097</p>
+        <p>STATUS: ONLINE</p>
+        <div class="ascii-art">
+          <pre>
+   __
+ _/o \_
+( \_  )
+/ / \ \
+\_) (_/
+                </pre
+          >
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
